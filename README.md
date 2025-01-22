@@ -137,7 +137,7 @@ torchrun --nproc_per_node=1 --standalone src/train.py --dataset=DATASET_NAME --s
 The command used for training Sheared LLama-1.3B on BLLIP-LG is:
 
 ```
-python train_transformers.py --dataset=bllip-lg --save_dir SAVE_DIR --wandb_entity WANDB_USER_NAME --seed 10 --callback  --max_train_steps 10000 --save_interval 5000 --eval_every 200 --pack --max_seq_len 512 --batch_size 4 --accum_steps 8 --start_lr 2e-5 --end_lr 4e-6 --regularize --regularizer_steps 2 --orth_bidir --layer_id 12 --sci_heads 0.25 --ce --hf --hf_model_name princeton-nlp/Sheared-LLaMA-1.3B
+torchrun --nproc_per_node=1 --standalone src/train.py --dataset=bllip-lg --save_dir SAVE_DIR --wandb_entity WANDB_USER_NAME --seed 10 --callback  --max_train_steps 10000 --save_interval 5000 --eval_every 200 --pack --max_seq_len 512 --batch_size 4 --accum_steps 8 --start_lr 2e-5 --end_lr 4e-6 --regularize --regularizer_steps 2 --orth_bidir --layer_id 12 --sci_heads 0.25 --ce --hf --hf_model_name princeton-nlp/Sheared-LLaMA-1.3B
 ```
 
 ## Evaluation
