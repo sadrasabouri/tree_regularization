@@ -10,6 +10,7 @@ This codebase can be used to pretrain language models with TreeReg on parsed cor
 
 ## TODOs
 - [ ] Optimize support for multi-GPU training.
+- [ ] Add evaluation scripts for SyntaxGym and Parsevals.
 
 ## Table of Contents
  
