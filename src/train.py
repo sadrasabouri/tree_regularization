@@ -188,5 +188,5 @@ if __name__ == "__main__":
     wandb.init(project=args.wandb_project,
                entity=args.wandb_entity)
     wandb.run.name = f"{args.save_dir}-{args.seed}"
-    wandb.run.save()
+    wandb.run.save('wandb_logs/*')
     main_lm(args)
