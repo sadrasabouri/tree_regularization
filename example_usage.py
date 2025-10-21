@@ -8,6 +8,14 @@ import torch
 import torch.nn as nn
 from src.regularizer.regularizer_main import TreeRegularizer
 
+if torch.cuda.is_available():
+    DEVICE = "cuda"
+elif torch.backends.mps.is_available():  # only works on macOS
+    DEVICE = "mps"
+else:
+    DEVICE = "cpu"
+print(f"PyTorch version: {torch.__version__} on {DEVICE}")
+
 def example_with_dummy_data():
     """
     Example showing how to integrate TreeReg into your training loop.
@@ -48,11 +56,17 @@ def example_with_dummy_data():
             "0 4": 2,  # Split sentence 1 at position 2 (middle)
             "0 2": 1,  # Split first half at position 1
             "2 4": 3   # Split second half at position 3
+            #          ____|____
+            #         |         |
+            #    0    1    2    3    4
         },
         {
             "0 4": 2,  # Split sentence 2 at position 2 (middle)
             "0 2": 1,  # Split first half at position 1
             "2 4": 3   # Split second half at position 3
+            #          ____|____
+            #         |         |
+            #    0    1    2    3    4
         }
     ]
     print("✓ Created parse trees")
@@ -65,7 +79,7 @@ def example_with_dummy_data():
     print(f"✓ Built SCIN charts: {len(scin_charts)} charts")
     
     # Get TreeReg scores
-    device = torch.device('cpu')  # Use appropriate device
+    device = torch.device(DEVICE)  # Use appropriate device
     treereg_scores, _ = regularizer.get_score(scin_charts, word_boundaries, parses, device)
     print(f"✓ Computed TreeReg scores: {len(treereg_scores)} scores")
     
@@ -113,7 +127,7 @@ def example_integration_pattern():
     
     # Compute TreeReg loss
     scin_charts = regularizer.build_chart(hidden_states, word_boundaries, parses)
-    treereg_scores, _ = regularizer.get_score(scin_charts, word_boundaries, parses, torch.device('cpu'))
+    treereg_scores, _ = regularizer.get_score(scin_charts, word_boundaries, parses, torch.device(DEVICE))
     treereg_loss = -torch.mean(torch.stack(treereg_scores))
     
     print(f"   treereg_loss = {treereg_loss.item():.4f}")
