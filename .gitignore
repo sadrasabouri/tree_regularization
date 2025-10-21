@@ -180,3 +180,4 @@ eval_scripts/baseline.txt
 eval_scripts/eval_code_permute.py
 eval_scripts/eval_reading_times.py
 src/data/code_parser.py
+datasets/
