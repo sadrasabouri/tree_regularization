@@ -24,7 +24,7 @@ def dataset_helper(dataset_name, args):
         else:
             in_vocab = pickle.load(open(f'{BASE_DIR}/src/data/blimp_vocab.pkl', 'rb'))
         datasets, _, _ = build_bllip_dataset(
-                data_file_given=f'{BASE_DIR}/datasets/bllip-lg-depth',
+                data_file_given=f'{BASE_DIR}/datasets/bllip-lg',
                 hf = args.hf,
                 in_vocab = in_vocab,
                 gpt2 = args.nanogpt
@@ -35,19 +35,19 @@ def dataset_helper(dataset_name, args):
         else:
             in_vocab = pickle.load(open(f'{BASE_DIR}/src/data/blimp_vocab.pkl', 'rb'))
         datasets, _, _ = build_bllip_dataset(
-                data_file_given=f'{BASE_DIR}/datasets/bllip-lg-depth',
+                data_file_given=f'{BASE_DIR}/datasets/bllip-lg',
                 hf = args.hf,
                 data_ratio = 0.001,
                 in_vocab = in_vocab,
                 gpt2 = args.nanogpt
             )
-    elif dataset_name == "bllip-int":
+    elif dataset_name == "bllip-sm":
         if args.hf:
             in_vocab = AutoTokenizer.from_pretrained(args.hf_model_name)
         else:
             in_vocab = pickle.load(open(f'{BASE_DIR}/src/data/blimp_vocab.pkl', 'rb'))
         datasets, _, _ = build_bllip_dataset(
-                data_file_given=f'{BASE_DIR}/datasets/bllip-lg-depth',
+                data_file_given=f'{BASE_DIR}/datasets/bllip-lg',
                 hf = args.hf,
                 data_ratio = 0.1,
                 in_vocab = in_vocab,

@@ -14,7 +14,7 @@ def callback_jp(model, in_vocab, split, regularizer = None, data_folder_given=No
     if data_folder_given:
         folder_dir = data_folder_given
     else:
-        folder_dir = "bllip-lg-depth"
+        folder_dir = "bllip-lg"
     
     with open("{}/{}.txt".format(folder_dir, split)) as f:
         if (split == 'train'):
@@ -48,7 +48,7 @@ def callback_jp(model, in_vocab, split, regularizer = None, data_folder_given=No
     if split == "val":
         blimp_examples = []
 
-        with open("/afs/cs.stanford.edu/u/ananjan/tree_regularization/src/callbacks/validated_minimal_pairs.jsonl", "r") as f:
+        with open("/project2/jonmay_1455/sadra/project/tree_regularization_sadra/src/callbacks/validated_minimal_pairs.jsonl", "r") as f:
             for line in f:
                 example = json.loads(line)
                 blimp_examples.append(example["good_sentence"])

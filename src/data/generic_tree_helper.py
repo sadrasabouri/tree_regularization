@@ -28,7 +28,7 @@ def build_generic_tree_dataset(
             split_file = split
 
             if data_file_given is None:
-                data_file = "bllip-lg-depth"
+                data_file = "bllip-lg"
             else:
                 data_file = data_file_given
 
