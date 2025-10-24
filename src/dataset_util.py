@@ -84,7 +84,7 @@ def get_callback_fn(args, model, in_vocab):
             data_folder_given=f'{BASE_DIR}/datasets/bllip-lg', hf=args.hf, data_ratio = 1.0, layer_id=args.layer_id, sci_heads=args.sci_heads),
         "bllip-md": lambda split, regularizer, args: callback_lm(model, in_vocab, split, regularizer, 
             data_folder_given=f'{BASE_DIR}/datasets/bllip-lg', hf=args.hf, data_ratio = 0.001, layer_id=args.layer_id, sci_heads=args.sci_heads),
-        "bllip-int": lambda split, regularizer, args: callback_lm(model, in_vocab, split, regularizer,
+        "bllip-sm": lambda split, regularizer, args: callback_lm(model, in_vocab, split, regularizer,
             data_folder_given=f'{BASE_DIR}/datasets/bllip-lg', hf=args.hf, data_ratio = 0.1, layer_id=args.layer_id, sci_heads=args.sci_heads),
     }
 
