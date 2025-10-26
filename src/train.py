@@ -49,7 +49,7 @@ def get_base_transformer_hf(args, in_vocab: CharVocabulary, model_load_path: str
     Returns:
         tuple: A tuple containing the model and its interface.
     """
-    model = AutoModelForCausalLM.from_pretrained(args.hf_model_name)
+    model = AutoModelForCausalLM.from_pretrained(args.hf_model_name, use_safetensors=True)
 
     if model_load_path:
         model.load_state_dict(torch.load(
