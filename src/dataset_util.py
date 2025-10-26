@@ -29,7 +29,7 @@ def dataset_helper(dataset_name, args):
                 in_vocab = in_vocab,
                 gpt2 = args.nanogpt
             )
-    elif dataset_name == "bllip-md":
+    elif dataset_name == "bllip-xs":
         if args.hf:
             in_vocab = AutoTokenizer.from_pretrained(args.hf_model_name)
         else:
@@ -82,7 +82,7 @@ def get_callback_fn(args, model, in_vocab):
             data_folder_given=f'{BASE_DIR}/datasets/jp-ninjal', hf=args.hf, data_ratio = 1.0, layer_id=args.layer_id, sci_heads=args.sci_heads),
         "bllip-lg": lambda split, regularizer, args: callback_lm(model, in_vocab, split, regularizer, 
             data_folder_given=f'{BASE_DIR}/datasets/bllip-lg', hf=args.hf, data_ratio = 1.0, layer_id=args.layer_id, sci_heads=args.sci_heads),
-        "bllip-md": lambda split, regularizer, args: callback_lm(model, in_vocab, split, regularizer, 
+        "bllip-xs": lambda split, regularizer, args: callback_lm(model, in_vocab, split, regularizer, 
             data_folder_given=f'{BASE_DIR}/datasets/bllip-lg', hf=args.hf, data_ratio = 0.001, layer_id=args.layer_id, sci_heads=args.sci_heads),
         "bllip-sm": lambda split, regularizer, args: callback_lm(model, in_vocab, split, regularizer,
             data_folder_given=f'{BASE_DIR}/datasets/bllip-lg', hf=args.hf, data_ratio = 0.1, layer_id=args.layer_id, sci_heads=args.sci_heads),
