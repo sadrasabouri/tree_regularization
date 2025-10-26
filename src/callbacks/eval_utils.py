@@ -190,8 +190,9 @@ def get_parsing_accuracy(predicted_parses, gold_parses, split):
     recall = sum(
         [get_score(pred, gold)[0] for gold, pred in zip(gold_brackets, pred_brackets)]
     )
-    precision /= 1.0 * sum(len(b) for b in pred_brackets)
-    recall /= 1.0 * sum(len(b) for b in gold_brackets)
+    bracket_len = sum(len(b) for b in pred_brackets) + 1e-9 # avoiding div by zero
+    precision /= 1.0 * bracket_len
+    recall /= 1.0 * bracket_len
 
     pred_lengthwise = {}
     for gold, pred in zip(gold_brackets, pred_brackets):
