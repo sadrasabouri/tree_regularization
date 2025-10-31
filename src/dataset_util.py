@@ -22,7 +22,7 @@ def dataset_helper(dataset_name, args):
         if args.hf:
             in_vocab = AutoTokenizer.from_pretrained(args.hf_model_name)
         else:
-            in_vocab = pickle.load(open(f'{BASE_DIR}/src/data/blimp_vocab.pkl', 'rb'))
+            in_vocab = pickle.load(open(f'{BASE_DIR}/src/data/llama_tokenizer.pkl', 'rb'))
         datasets, _, _ = build_bllip_dataset(
                 data_file_given=f'{BASE_DIR}/datasets/bllip-lg',
                 hf = args.hf,
@@ -33,7 +33,7 @@ def dataset_helper(dataset_name, args):
         if args.hf:
             in_vocab = AutoTokenizer.from_pretrained(args.hf_model_name)
         else:
-            in_vocab = pickle.load(open(f'{BASE_DIR}/src/data/blimp_vocab.pkl', 'rb'))
+            in_vocab = pickle.load(open(f'{BASE_DIR}/src/data/llama_tokenizer.pkl', 'rb'))
         datasets, _, _ = build_bllip_dataset(
                 data_file_given=f'{BASE_DIR}/datasets/bllip-lg',
                 hf = args.hf,
@@ -45,7 +45,7 @@ def dataset_helper(dataset_name, args):
         if args.hf:
             in_vocab = AutoTokenizer.from_pretrained(args.hf_model_name)
         else:
-            in_vocab = pickle.load(open(f'{BASE_DIR}/src/data/blimp_vocab.pkl', 'rb'))
+            in_vocab = pickle.load(open(f'{BASE_DIR}/src/data/llama_tokenizer.pkl', 'rb'))
         datasets, _, _ = build_bllip_dataset(
                 data_file_given=f'{BASE_DIR}/datasets/bllip-lg',
                 hf = args.hf,
