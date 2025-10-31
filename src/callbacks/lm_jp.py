@@ -48,7 +48,7 @@ def callback_jp(model, in_vocab, split, regularizer = None, data_folder_given=No
     if split == "val":
         blimp_examples = []
 
-        with open("/project2/jonmay_1455/sadra/project/tree_regularization_sadra/src/callbacks/validated_minimal_pairs.jsonl", "r") as f:
+        with open("src/callbacks/validated_minimal_pairs.jsonl", "r") as f:
             for line in f:
                 example = json.loads(line)
                 blimp_examples.append(example["good_sentence"])

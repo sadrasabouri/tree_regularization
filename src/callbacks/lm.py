@@ -52,11 +52,11 @@ def callback_lm(model, in_vocab, split, regularizer = None, data_folder_given=No
     acc = 0
     if split == "val":
         if hf:
-            with open("/project2/jonmay_1455/sadra/project/tree_regularization_sadra/src/callbacks/blimp.pkl", "rb") as f:
+            with open("src/callbacks/blimp.pkl", "rb") as f:
                 blimp_data = [reformat_tree(Tree.fromstring(t), in_vocab, True) for t in pickle.load(f)]
             blimp_examples = [flatten(d, add_eos=False, clean=True) for d in blimp_data]
         else:
-            with open("/project2/jonmay_1455/sadra/project/tree_regularization_sadra/src/callbacks/blimp.pkl", "rb") as f:
+            with open("src/callbacks/blimp.pkl", "rb") as f:
                 blimp_data = [Tree.fromstring(t) for t in pickle.load(f)]
             blimp_examples = [flatten(d, add_eos=False) for d in blimp_data]
 

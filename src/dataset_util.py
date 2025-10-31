@@ -5,7 +5,7 @@ from callbacks.lm_jp import callback_jp
 from transformers import AutoModelForCausalLM, AutoTokenizer, GPT2Tokenizer
 import pickle
 
-BASE_DIR = "/project2/jonmay_1455/sadra/project/tree_regularization_sadra"
+BASE_DIR = "."
 
 def dataset_helper(dataset_name, args):
     if dataset_name == "jp-alt":
