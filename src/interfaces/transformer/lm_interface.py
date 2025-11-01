@@ -79,9 +79,8 @@ class TransformerLMInterface(ModelInterface):
         # pdb.set_trace()
 
         res.data = res.data.transpose(0, 1)
-        len_mask = ~self.model.module.generate_len_mask(inp_data.shape[1], in_len).transpose(
-            0, 1
-        )
+        real_model = self.model.module if hasattr(self.model, "module") else self.model
+        len_mask = ~real_model.generate_len_mask(inp_data.shape[1], in_len).transpose(0, 1)
 
         loss = self.loss(res, out_data.transpose(0, 1), len_mask, normalize)
         return EncoderDecoderResult(res.data, res.length, loss, res.hidden_states)
