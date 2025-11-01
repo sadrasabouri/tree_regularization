@@ -200,6 +200,7 @@ def train_loop(
                     curr_word_boundaries = [[int(_) for _ in wb.split(" ")] for wb in curr_word_boundaries]
                     curr_parses = [json.loads(_) for _ in curr_parses]
                     hidden_states = hidden_states[:,1:,:] # skip the hidden states for SOS
+                    print('Misalignment:', len(curr_word_boundaries[0]), hidden_states.shape[1])
                     
                     scin_charts = regularizer.build_chart(hidden_states, curr_word_boundaries, curr_parses)
 
@@ -208,6 +209,7 @@ def train_loop(
                     print(broken_acc)
 
                     fin_treereg_scores = torch.mean(torch.stack(treereg_scores))
+                    wandb.log({"fin_treereg_scores": fin_treereg_scores.item(), "train_parseval": broken_acc})
                     sci_loss = -fin_treereg_scores/accum_steps
                     sci_scores_agg.append(fin_treereg_scores.item()/accum_steps)
                     accelerator.backward(sci_loss)
