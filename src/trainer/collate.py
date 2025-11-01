@@ -53,7 +53,7 @@ class VarLengthCollate:
             if isinstance(batch[0][0], str):
                 return [b for b in batch]
             else:
-                return self([torch.tensor(b) for b in batch])
+                return self([torch.tensor([x if x is not None else self.ignore_symbol for x in b]) for b in batch])
         elif isinstance(batch[0], (int, float)):
             return torch.Tensor(batch)
         elif isinstance(batch[0], str):
