@@ -1,7 +1,7 @@
 import re
 from typing import List, Union, Optional, Dict, Any, Set
 from transformers import AutoModelForCausalLM, AutoTokenizer
-
+from warnings import warn
 
 class WordVocabulary:
     def __init__(
@@ -50,9 +50,8 @@ class WordVocabulary:
 
     def _process_word(self, w: str) -> int:
         res = self.words.get(w, self._unk_index)
-        assert (
-            res != self._unk_index
-        ) or self.allow_any_word, f"WARNING: unknown word: '{w}'"
+        if res != self._unk_index and not self.allow_any_word:
+            warn(f"WARNING: unknown word: '{w}'")
         return res
 
     def _process_index(self, i: int) -> str:
