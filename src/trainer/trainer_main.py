@@ -199,12 +199,7 @@ def train_loop(
                         hidden_states = util.extract_hidden_states(hidden_states, curr_word_boundaries)
                     curr_word_boundaries = [[int(_) for _ in wb.split(" ")] for wb in curr_word_boundaries]
                     curr_parses = [json.loads(_) for _ in curr_parses]
-                    hidden_states = hidden_states[:,1:,:] # skip the hidden states for SOS
-                    print("Tokens:", parse_batch_dict['string'][0])
-                    print("Word boundaries:", curr_word_boundaries[0])
-                    print("Hidden state length:", hidden_states.shape[1])
-                    print('Misalignment:', len(curr_word_boundaries[0]), hidden_states.shape[1])
-                    
+                    hidden_states = hidden_states[:,1:,:] # skip the hidden states for SOS                
                     scin_charts = regularizer.build_chart(hidden_states, curr_word_boundaries, curr_parses)
 
                     # with torch.autocast(device_type='cuda' if torch.cuda.is_available() else 'cpu', dtype=torch.bfloat16, enabled=True):
